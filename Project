@@ -1,0 +1,101 @@
+def main():
+    print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
+    print("☐ 👋 Welcome to the Basic Python Information Program!👋 ☐ ")
+    print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
+
+    while True:
+        print("\n--- Python Concepts Menu ---")
+        print("1. Data Types")
+        print("2. Control Structures (if statements)")
+        print("3. Loops")
+        print("4. Functions")
+        print("5. Exit")
+        choice = input("Choose a concept (1-5): ")
+
+        if choice == '1':
+            print("\n--- Data Types List ---")
+            print("Python has several built-in data types to store values. Here are the main types:")
+            print("\nNumeric Types: ")
+            print("1. int: Represents integers (whole numbers).")
+            print("Example: 1, 69, 69420")
+            print("2. float: Represents floating-point numbers (decimals).")
+            print("Example: 1.3, 6.9, 69.420")
+            print("3. complex: Represents complex numbers.")
+            print("Example: 5 + 9j (j is the imaginary unit)")
+
+            print("\nSequence Types: ")
+            print("1. str: Represents strings, which are sequences of characters.")
+            print("xample: 'Hello, World!'")
+            print("2. list: Represents ordered collections of items, which can be of different types.")
+            print("Example: [1, 2, 3, 'limb']")
+            print("3. tuple: Similar to lists but immutable (cannot be changed).")
+            print("Example: (1, 2, 3)")
+
+            print("\nSet Types: ")
+            print("1. set: Represents an unordered collection of unique items.")
+            print("Example: {1, 2, 3, 4}")
+            print("2. frozenset: Similar to a set but immutable.")
+            print("Example: frozenset({1, 2, 3})")
+
+            print("\nMapping Type: ")
+            print("1. dict (dictionary): Represents a collection of key-value pairs.")
+            print("Example: {'name': 'John', 'age': 30}")
+
+            print("\nBoolean Type: ")
+            print("1. bool: Represents boolean values, either True or False.")
+            print("Example: True, False")
+
+        elif choice == '2':
+            print("\n--- Control Structures (if statements) ---")
+            print("Control structures like if statements allow you to execute code based on conditions.")
+            print("Example:")
+            print("if x > 10:")
+            print("print('x is greater than 10')")
+            print("You can also use elif and else to create more complex conditions.")
+            print("Example:")
+            print("if x > 10:")
+            print("print('x is greater than 10')")
+            print("elif x == 10:")
+            print("print('x is equal to 10')")
+            print("else:")
+            print(" print('x is less than 10')")
+
+        elif choice == '3':
+            print("\n𖦹 Loops 𖦹")
+            print("Loops are used for iterating over a sequence (like a list or a string).")
+            print("Example of a for loop:")
+            print("for i in range(5):")
+            print("print(i)")
+            print("This prints numbers from 0 to 4.")
+            print("\nExample of a while loop:")
+            print("count = 0")
+            print("while count < 5:")
+            print("print(count)")
+            print("count += 1")
+
+            print("This also prints numbers from 0 to 4.")
+
+        elif choice == '4':
+            print("\n⚙️ Functions ⚙️")
+            print("Functions are reusable pieces of code that perform a specific task.")
+            print("You can define a function using the def keyword.")
+            print("Example:")
+            print("def greet(name):")
+            print("return 'Hello, ' + name")
+            print("result = greet('Johnny Sins')")
+            print("This would return 'Hello, Johnny Sins'.")
+            print("\nFunctions can also take multiple arguments and return values.")
+            print("Example:")
+            print("def add(a, b):")
+            print("return a + b")
+            print("result = add(5, 3)")
+
+        elif choice == '5':
+            print(" 🥰 Thank you for using the Basic Python Information Program. Goodbye! 🥰")
+            break
+
+        else:
+            print(" 🙅🏻‍♂️ Invalid option. Please choose a number between 1 and 5.")
+
+if __name__ == "__main__":
+    main()
