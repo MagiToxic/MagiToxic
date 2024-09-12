@@ -1,16 +1,22 @@
 def main():
-    print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
-    print("☐ 👋 Welcome to the Basic Python Information Program!👋 ☐ ")
-    print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
+    print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
+    print("☐     Welcome to the Basic Python Information Program!      ☐")
+    print("☐                                                           ☐")
+    print("☐                                                           ☐")
+    print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
 
     while True:
         print("\n--- Python Concepts Menu ---")
+        print("\nBeginner")
         print("1. Data Types")
         print("2. Control Structures (if statements)")
         print("3. Loops")
         print("4. Functions")
-        print("5. Exit")
-        choice = input("Choose a concept (1-5): ")
+        print("\n Advance")
+        print("5. Object-Oriented Programming")
+        print("")
+        print("6. Exit")
+        choice = input("Choose a concept (1-6): ")
 
         if choice == '1':
             print("\n--- Data Types List ---")
@@ -25,7 +31,7 @@ def main():
 
             print("\nSequence Types: ")
             print("1. str: Represents strings, which are sequences of characters.")
-            print("xample: 'Hello, World!'")
+            print("Example: 'Hello, World!'")
             print("2. list: Represents ordered collections of items, which can be of different types.")
             print("Example: [1, 2, 3, 'limb']")
             print("3. tuple: Similar to lists but immutable (cannot be changed).")
