@@ -9,15 +9,15 @@ def main():
 
     while True:
         print("\n--- Python Concepts Menu ---")
-        print("\nBeginner Concepts")
+        print("Beginner ")
         print("1. Data Types")
         print("2. Control Structures (if statements)")
         print("3. Loops")
         print("4. Functions")
-        print("\nIntermediate")
+        print("Intermediate ")
         print("5. List Comprehensions")
         print("6. Exception Handling")
-        print("\nAdvance")
+        print("Advance ")
         print("7. Classes and Objects")
         print("8. Decorators")
         choice = input("Choose a concept (1-8) or Exit: ")
