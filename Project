@@ -169,7 +169,9 @@ def main():
             break
 
         else:
-            print(" 🙅🏻‍♂️ Invalid option. Please choose a number between 1 and 9.")
+            print(" 🙅🏻‍♂️ Invalid option. Please choose a number between 1 and 8.")
+
+        input("\nPress Enter to return to the main menu.")
 
 if __name__ == "__main__":
     main()
