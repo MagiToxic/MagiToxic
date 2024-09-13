@@ -1,22 +1,27 @@
 def main():
     print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
-    print("☐     Welcome to the Basic Python Information Program!      ☐")
+    print("☐                                                           ☐")
+    print("☐                                                           ☐")
+    print("☐     Welcome to the Python Learning Program!               ☐")
     print("☐                                                           ☐")
     print("☐                                                           ☐")
     print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
 
     while True:
         print("\n--- Python Concepts Menu ---")
-        print("\nBeginner")
+        print("\nBeginner Concepts")
         print("1. Data Types")
         print("2. Control Structures (if statements)")
         print("3. Loops")
         print("4. Functions")
-        print("\n Advance")
-        print("5. Object-Oriented Programming")
-        print("")
-        print("6. Exit")
-        choice = input("Choose a concept (1-6): ")
+        print("\nIntermediate")
+        print("5. List Comprehensions")
+        print("6. Exception Handling")
+        print("\nAdvance")
+        print("7. Classes and Objects")
+        print("8. Decorators")
+        print("9. Exit")
+        choice = input("Choose a concept (1-9): ")
 
         if choice == '1':
             print("\n--- Data Types List ---")
@@ -27,15 +32,15 @@ def main():
             print("2. float: Represents floating-point numbers (decimals).")
             print("Example: 1.3, 6.9, 69.420")
             print("3. complex: Represents complex numbers.")
-            print("Example: 5 + 9j (j is the imaginary unit)")
+            print("Example: 5 + 9x (x is the imaginary unit)")
 
             print("\nSequence Types: ")
             print("1. str: Represents strings, which are sequences of characters.")
             print("Example: 'Hello, World!'")
             print("2. list: Represents ordered collections of items, which can be of different types.")
-            print("Example: [1, 2, 3, 'limb']")
+            print("Example: [1, 2, 3, 4 'limb']")
             print("3. tuple: Similar to lists but immutable (cannot be changed).")
-            print("Example: (1, 2, 3)")
+            print("Example: (1, 2, 3, 4)")
 
             print("\nSet Types: ")
             print("1. set: Represents an unordered collection of unique items.")
@@ -45,11 +50,13 @@ def main():
 
             print("\nMapping Type: ")
             print("1. dict (dictionary): Represents a collection of key-value pairs.")
-            print("Example: {'name': 'John', 'age': 30}")
+            print("Example: {'name': 'Greg', 'age': 21}")
 
             print("\nBoolean Type: ")
             print("1. bool: Represents boolean values, either True or False.")
             print("Example: True, False")
+
+            input("\nPress Enter to return to the main menu.")
 
         elif choice == '2':
             print("\n--- Control Structures (if statements) ---")
@@ -66,6 +73,8 @@ def main():
             print("else:")
             print(" print('x is less than 10')")
 
+            input("\nPress Enter to return to the main menu.")
+
         elif choice == '3':
             print("\n𖦹 Loops 𖦹")
             print("Loops are used for iterating over a sequence (like a list or a string).")
@@ -79,7 +88,7 @@ def main():
             print("print(count)")
             print("count += 1")
 
-            print("This also prints numbers from 0 to 4.")
+            input("\nPress Enter to return to the main menu.")
 
         elif choice == '4':
             print("\n⚙️ Functions ⚙️")
@@ -96,12 +105,69 @@ def main():
             print("return a + b")
             print("result = add(5, 3)")
 
+            input("\nPress Enter to return to the main menu.")
+
         elif choice == '5':
-            print(" 🥰 Thank you for using the Basic Python Information Program. Goodbye! 🥰")
+            print("\n--- List Comprehensions ---")
+            print("List comprehensions provide a concise way to create lists.")
+            print("Example:")
+            print("[x**2 for x in range(5)]")
+            print("This generates a list of squares: [0, 1, 4, 9, 16].")
+
+            input("\nPress Enter to return to the main menu.")
+
+        elif choice == '6':
+            print("\n--- Exception Handling ---")
+            print("Exception handling helps prevent crashes from errors.")
+            print("Example:")
+            print("try:")
+            print("    x = int(input('Enter a number: '))")
+            print("except ValueError:")
+            print("    print('Invalid input, please enter a number.')")
+
+            input("\nPress Enter to return to the main menu.")
+
+        elif choice == '7':
+            print("\n--- Classes and Objects ---")
+            print("Python is object-oriented. Classes define the structure of objects.")
+            print("Example of a simple class:")
+            print("class Greg:")
+            print("    def __init__(self, name, age):")
+            print("        self.name = name")
+            print("        self.age = age")
+            print("    p1 = Person John, 36")
+            print(" print(p1.name)       ")
+
+
+        elif choice == '8':
+            print("\n--- Decorators ---")
+            print("Decorators is a design pattern that allows you to modify the functionality of a function by wrapping it in another function..")
+            print("Example:")
+            print("def shout(text):")
+            print("    return text.upper() ")
+            print()
+            print("def whisper(text):")
+            print("    return text.lower()")
+            print()
+            print("def greet(func): ")
+            print("    greeting = func(''Tol. Pumunta si speed dito sa Pilipinas''.) ")
+            print("    greeting")
+            print()
+            print("greet(shout) ")
+            print("greet(whisper) ")
+            print()
+            print("output: TOL. PUMUNTA SI SPEED DITO SA PILIPINAS.")
+            print("output: tol. pumunta si speed dito sa pilipinas.")
+
+            input("\nPress Enter to return to the main menu.")
+
+
+        elif choice == '9':
+            print(" 🥰 Thank you for using the Python Learning Program. Goodbye! 🥰")
             break
 
         else:
-            print(" 🙅🏻‍♂️ Invalid option. Please choose a number between 1 and 5.")
+            print(" 🙅🏻‍♂️ Invalid option. Please choose a number between 1 and 9.")
 
 if __name__ == "__main__":
     main()
