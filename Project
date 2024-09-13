@@ -20,8 +20,7 @@ def main():
         print("\nAdvance")
         print("7. Classes and Objects")
         print("8. Decorators")
-        print("9. Exit")
-        choice = input("Choose a concept (1-9): ")
+        choice = input("Choose a concept (1-8) or Exit: ")
 
         if choice == '1':
             print("\n--- Data Types List ---")
@@ -40,7 +39,9 @@ def main():
             print("2. list: Represents ordered collections of items, which can be of different types.")
             print("Example: [1, 2, 3, 4 'limb']")
             print("3. tuple: Similar to lists but immutable (cannot be changed).")
-            print("Example: (1, 2, 3, 4)")
+            print("Example number = (1, 2, 3, 4)")
+            print("print(number) ")
+            print("output: (1, 2, 3, 4) ")
 
             print("\nSet Types: ")
             print("1. set: Represents an unordered collection of unique items.")
@@ -78,7 +79,7 @@ def main():
         elif choice == '3':
             print("\n𖦹 Loops 𖦹")
             print("Loops are used for iterating over a sequence (like a list or a string).")
-            print("Example of a for loop:")
+            print("An example of a loop:")
             print("for i in range(5):")
             print("print(i)")
             print("This prints numbers from 0 to 4.")
@@ -94,13 +95,13 @@ def main():
             print("\n⚙️ Functions ⚙️")
             print("Functions are reusable pieces of code that perform a specific task.")
             print("You can define a function using the def keyword.")
-            print("Example:")
+            print("An example of Functions")
             print("def greet(name):")
             print("return 'Hello, ' + name")
             print("result = greet('Johnny Sins')")
             print("This would return 'Hello, Johnny Sins'.")
             print("\nFunctions can also take multiple arguments and return values.")
-            print("Example:")
+            print("Example of a function")
             print("def add(a, b):")
             print("return a + b")
             print("result = add(5, 3)")
@@ -110,16 +111,17 @@ def main():
         elif choice == '5':
             print("\n--- List Comprehensions ---")
             print("List comprehensions provide a concise way to create lists.")
-            print("Example:")
-            print("[x**2 for x in range(5)]")
-            print("This generates a list of squares: [0, 1, 4, 9, 16].")
+            print("Example: ")
+            print("even_numbers = [num for num in range(1, 10) if num % 2 == 0 ]")
+            print("\nprint(even_numbers) ")
+            print("\noutput: [2, 4, 6, 8] ")
 
             input("\nPress Enter to return to the main menu.")
 
         elif choice == '6':
             print("\n--- Exception Handling ---")
             print("Exception handling helps prevent crashes from errors.")
-            print("Example:")
+            print("Example: ")
             print("try:")
             print("    x = int(input('Enter a number: '))")
             print("except ValueError:")
@@ -130,39 +132,39 @@ def main():
         elif choice == '7':
             print("\n--- Classes and Objects ---")
             print("Python is object-oriented. Classes define the structure of objects.")
-            print("Example of a simple class:")
-            print("class Greg:")
-            print("    def __init__(self, name, age):")
-            print("        self.name = name")
-            print("        self.age = age")
-            print("    p1 = Person John, 36")
-            print(" print(p1.name)       ")
+            print("Example: ")
+            print("class Room: ")
+            print("   length = 0.0 ")
+            print("   breadth = 0.0")
+            print("\n   def calculate_area(self): ")
+            print("   print(''Area of Room ='', self.length * self.breadth) ")
+            print(" study_room = Room()")
+            print("\nstudy_room.length = 42.5")
+            print("study_room.breadth = 30.8")
+            print("\nstudy_room.calculate_area()")
+            print("\noutput: Area of Room = 1309.0 ")
 
+            input("\nPress Enter to return to the main menu.")
 
         elif choice == '8':
             print("\n--- Decorators ---")
             print("Decorators is a design pattern that allows you to modify the functionality of a function by wrapping it in another function..")
-            print("Example:")
+            print("Example: ")
             print("def shout(text):")
             print("    return text.upper() ")
-            print()
-            print("def whisper(text):")
+            print("\ndef whisper(text):")
             print("    return text.lower()")
-            print()
-            print("def greet(func): ")
+            print("\ndef greet(func): ")
             print("    greeting = func(''Tol. Pumunta si speed dito sa Pilipinas''.) ")
             print("    greeting")
-            print()
-            print("greet(shout) ")
+            print("\ngreet(shout) ")
             print("greet(whisper) ")
-            print()
-            print("output: TOL. PUMUNTA SI SPEED DITO SA PILIPINAS.")
+            print("\noutput: TOL. PUMUNTA SI SPEED DITO SA PILIPINAS.")
             print("output: tol. pumunta si speed dito sa pilipinas.")
 
             input("\nPress Enter to return to the main menu.")
 
-
-        elif choice == '9':
+        elif choice == 'Exit':
             print(" 🥰 Thank you for using the Python Learning Program. Goodbye! 🥰")
             break
 
