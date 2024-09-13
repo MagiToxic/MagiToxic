@@ -2,7 +2,7 @@ def main():
     print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
     print("☐                                                           ☐")
     print("☐                                                           ☐")
-    print("☐     Welcome to the Python Learning Program!               ☐")
+    print("☐          Welcome to the Python Learning Program!          ☐")
     print("☐                                                           ☐")
     print("☐                                                           ☐")
     print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
