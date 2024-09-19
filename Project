@@ -6,6 +6,12 @@ def main():
     print("☐                                                           ☐")
     print("☐                                                           ☐")
     print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
+    print("☐                                                           ☐")
+    print("☐                      Beginner                             ☐")
+    print("☐                      Intermediate                         ☐")
+    print("☐                      Advance                              ☐")
+    print("☐                                                           ☐")
+    print("☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐☐")
 
     while True:
         print("\n--- Python Concepts Menu ---")
@@ -17,10 +23,14 @@ def main():
         print("Intermediate ")
         print("5. List Comprehensions")
         print("6. Exception Handling")
+        print("7. File Handling")
+        print("8. Lambda Functions")
         print("Advance ")
-        print("7. Classes and Objects")
-        print("8. Decorators")
-        choice = input("Choose a concept (1-8) or Exit: ")
+        print("9. Classes and Objects")
+        print("10. Decorators")
+        print("11. Regular Expressions")
+        print("12. Generators")
+        choice = input("Choose a concept (1-12) or Exit: ")
 
         if choice == '1':
             print("\n--- Data Types List ---")
@@ -174,6 +184,29 @@ def main():
             input("\nPress Enter to return to the main menu.")
 
         elif choice == '7':
+            print("\n--- File Handling ---")
+            print("File handling is used to read, write, and manage files.")
+            print("Example:")
+            print("with open('example.txt', 'w') as file:")
+            print("    file.write('Hello, World!')")
+            print("\nExample of reading from a file:")
+            print("with open('example.txt', 'r') as file:")
+            print("    content = file.read()")
+            print("    print(content)")
+
+            input("\nPress Enter to return to the main menu.")
+
+        elif choice == '8':
+            print("\n--- Lambda Functions ---")
+            print("Lambda functions are anonymous, small, and simple functions.")
+            print("Example:")
+            print("add = lambda x, y: x + y")
+            print("print(add(5, 3))")
+            print("output: 8")
+
+            input("\nPress Enter to return to the main menu.")
+
+        elif choice == '9':
             print("\n--- Classes and Objects ---")
             print("Python is object-oriented. Classes define the structure of objects.")
             print("Example: ")
@@ -190,7 +223,7 @@ def main():
 
             input("\nPress Enter to return to the main menu.")
 
-        elif choice == '8':
+        elif choice == '10':
             print("\n--- Decorators ---")
             print("Decorators is a design pattern that allows you to modify the functionality of a function by wrapping it in another function..")
             print("Example: ")
@@ -204,7 +237,43 @@ def main():
             print("\ngreet(shout) ")
             print("greet(whisper) ")
             print("\noutput: TOL. PUMUNTA SI SPEED DITO SA PILIPINAS.")
+
             print("output: tol. pumunta si speed dito sa pilipinas.")
+
+        elif choice == '11':
+            print("\n--- Regular Expressions ---")
+            print("Regular expressions are patterns used to match text.")
+            print("Example:")
+            print("import re")
+            print("txt = ''The rain in Spain'' ")
+            print(" x = re.search(''^The.*Spain$'', txt)")
+            print("if x:")
+            print("  print(''YES! We have a match!'') ")
+            print("else: ")
+            print("  print(''No match'')")
+            print("output: YES! We have a match!")
+
+            input("\nPress Enter to return to the main menu.")
+
+        elif choice == '12':
+            print("\n--- Generators ---")
+            print("Generators are functions that return an iterator which yields values one at a time.")
+            print("Example:")
+            print("def count_up_to(max):")
+            print("    count = 1")
+            print("    while count <= max:")
+            print("        yield count")
+            print("        count += 1")
+            print("counter = count_up_to(5)")
+            print("for num in counter:")
+            print("    print(num)")
+            print("output:")
+            print("        1")
+            print("        2 ")
+            print("        3 ")
+            print("        4 ")
+            print("        5 ")
+
 
             input("\nPress Enter to return to the main menu.")
 
