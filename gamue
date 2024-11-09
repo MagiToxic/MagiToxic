@@ -1,51 +1,53 @@
-import pygame
-import random
-import math
+import pygame, random, math
+from pygame import mixer
 
-
-# Initialize Pygame
+# Starting the Pygame
 pygame.init()
 
+# Add background music
+mixer.music.load("background.wav")
+mixer.music.play(2)
+
 # Screen setup
-screen_width, screen_height = 800, 600
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Earth Invaders")
+SCREEN_WIDTH, SCREEN_HEIGHT = 900, 700
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("MagiWanda In Dream World")
 
-# Colors
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
+# Colors and images
+BLACK, WHITE, RED, GREEN = (0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0)
+player_img = pygame.image.load("player.png")
+boss_img = pygame.image.load("alien.png")
+player_bullet_img = pygame.image.load("bullet.png")
+boss_bullet_img = pygame.image.load("alien_bullet.png")
+background_img = pygame.image.load("background.png")
 
-# Load images
-player_img = pygame.image.load("player.png")  # Load an image of the player's space fighter
-alien_img = pygame.image.load("alien.png")    # Load an image of the enemy alien ship
-bullet_img = pygame.image.load("bullet.png")  # Load an image of the bullet
-background = pygame.image.load("background.png") # Load an image of background
+# Player settings
+player_x, player_y = SCREEN_WIDTH // 2, SCREEN_HEIGHT - 60
+player_speed = 10
+player_x_change, player_y_change = 0, 0
+lives = 3
 
-# Player
-player_x = screen_width / 2
-player_y = screen_height - 50
-player_x_change = 0
-player_speed = 2
+# Boss settings
+boss_x, boss_y = SCREEN_WIDTH // 2 - 32, 50
+boss_speed_x, boss_speed_y = 2, 1
+boss_direction_x, boss_direction_y = 1, 1
+boss_health = 100
+boss_max_health = boss_health
+boss_bullet_speed = 4
+boss_attack_cooldown = 0
+boss_attack_pattern = 0
 
 # Game settings
-level = 1
-score = 2
-alien_speed = 1.5
+level, score = 1, 0
+boss_bullets = []
+bullet_cooldown = 0
 
-# Maximum number of aliens per level (can be adjusted)
-max_aliens_per_level = 5
-alien_x = []
-alien_y = []
-alien_x_change = [1]
-alien_y_change = [5]
+# Bullet settings
+player_bullets = []
+player_bullet_speed = 10
+AUTO_FIRE_RATE = 2
 
-# Bullet
-bullet_x = 0
-bullet_y = player_y
-bullet_y_change = 5
-bullet_state = "ready"  # "ready" means bullet is ready to fire; "fire" means bullet is moving
-
-# Fonts for text display
+# Fonts
 font_large = pygame.font.Font(None, 74)
 font_small = pygame.font.Font(None, 36)
 
@@ -53,142 +55,187 @@ font_small = pygame.font.Font(None, 36)
 def player(x, y):
     screen.blit(player_img, (x, y))
 
-def alien(x, y):
-    screen.blit(alien_img, (x, y))
+def boss(x, y):
+    screen.blit(boss_img, (x, y))
 
-def fire_bullet(x, y):
-    global bullet_state
-    bullet_state = "fire"
-    screen.blit(bullet_img, (x + 16, y + 10))
+def fire_player_bullet(x, y):
+    player_bullets.append({"x": x + 16, "y": y})
+
+def fire_boss_bullet(x, y, angle):
+    boss_bullets.append({
+        "x": x, "y": y,
+        "x_change": boss_bullet_speed * math.cos(angle),
+        "y_change": boss_bullet_speed * math.sin(angle)
+    })
 
 def is_collision(x1, y1, x2, y2):
-    distance = math.sqrt((math.pow(x1 - x2, 2)) + (math.pow(y1 - y2, 2)))
-    return distance < 27
+    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) < 27
 
 def show_game_over():
-    game_over_text = font_large.render("GAME OVER", True, WHITE)
-    retry_text = font_small.render("Press R to Retry", True, WHITE)
-    screen.blit(game_over_text, (screen_width // 2 - 150, screen_height // 2 - 50))
-    screen.blit(retry_text, (screen_width // 2 - 100, screen_height // 2 + 20))
+    screen.blit(font_large.render("GAME OVER", True, WHITE), (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 50))
+    screen.blit(font_small.render("Press R to Retry", True, WHITE), (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 + 20))
 
 def show_score(x, y):
-    score_text = font_small.render("Score: " + str(score), True, WHITE)
-    screen.blit(score_text, (x, y))
+    screen.blit(font_small.render(f"Score: {score}", True, WHITE), (x, y))
 
 def show_level(x, y):
-    level_text = font_small.render("Level: " + str(level), True, WHITE)
-    screen.blit(level_text, (x, y))
+    screen.blit(font_small.render(f"Level: {level}", True, WHITE), (x, y))
 
-# Reset aliens for new level
-def reset_aliens():
-    global alien_x, alien_y, alien_x_change, alien_y_change
-    num_aliens = min(max_aliens_per_level + (level - 1) * 2, 20)  # Increase alien count per level but cap at 20
-    alien_x = [random.randint(0, screen_width - 64) for _ in range(num_aliens)]
-    alien_y = [random.randint(50, 150) for _ in range(num_aliens)]
-    alien_x_change = [alien_speed for _ in range(num_aliens)]
-    alien_y_change = [3 for _ in range(num_aliens)]
+def show_lives(x, y):
+    screen.blit(font_small.render(f"Lives: {lives}", True, WHITE), (x, y))
 
-# Reset game
+def show_boss_health():
+    health_bar_width = 400
+    current_health_width = int((boss_health / boss_max_health) * health_bar_width)
+    pygame.draw.rect(screen, RED, (200, 10, health_bar_width, 20))
+    pygame.draw.rect(screen, GREEN, (200, 10, current_health_width, 20))
+
+def reset_boss():
+    global boss_health, boss_max_health, boss_attack_pattern, boss_x, boss_y
+    boss_health = boss_max_health = 100 + (level - 1) * 50
+    boss_attack_pattern = 0
+    boss_x, boss_y = SCREEN_WIDTH // 2 - 32, 50
+
 def reset_game():
-    global player_x, player_x_change, bullet_x, bullet_y, bullet_state, score, level, alien_speed
-    player_x = screen_width / 2
-    player_x_change = 0
-    bullet_state = "ready"
-    bullet_y = player_y
-    score = 0
-    level = 1
-    alien_speed = 3
-    reset_aliens()
+    global player_x, player_y, player_x_change, player_y_change, lives, score, level, boss_bullets, player_bullets
+    player_x, player_y = SCREEN_WIDTH // 2, SCREEN_HEIGHT - 60
+    player_x_change, player_y_change = 0, 0
+    lives, score, level = 3, 0, 1
+    boss_bullets.clear()
+    player_bullets.clear()
+    reset_boss()
+
+def boss_attack():
+    global boss_attack_cooldown, boss_attack_pattern
+    if boss_attack_cooldown == 0:
+        if boss_attack_pattern % 5 == 0:
+            for i in range(36):
+                angle = math.radians(i * 10 + (level * 5))
+                fire_boss_bullet(boss_x + 32, boss_y + 32, angle)
+        elif boss_attack_pattern % 5 == 1:
+            for i in range(-2, 3):
+                angle = math.radians(90 + (i * 20))
+                fire_boss_bullet(boss_x + 32 + i * 10, boss_y + 32, angle)
+        elif boss_attack_pattern % 5 == 2:
+            for angle in range(0, 360, 30):
+                fire_boss_bullet(boss_x + 32, boss_y + 32, math.radians(angle))
+        elif boss_attack_pattern % 5 == 3:
+            dx = player_x - boss_x
+            dy = player_y - boss_y
+            angle = math.atan2(dy, dx)
+            fire_boss_bullet(boss_x + 32, boss_y + 32, angle)
+        elif boss_attack_pattern % 5 == 4:
+            for _ in range(1):
+                angle = random.uniform(0, math.pi * 2)
+                fire_boss_bullet(boss_x + 32, boss_y + 32, angle)
+
+        boss_attack_pattern += 1
+        boss_attack_cooldown = 30 - (level * 2)
+    else:
+        boss_attack_cooldown -= 1
+
+def show_main_menu():
+    screen.fill(BLACK)
+    screen.blit(font_large.render("Magi In Dream World", True, WHITE), (SCREEN_WIDTH // 2 - 245, SCREEN_HEIGHT // 2 - 100))
+    screen.blit(font_small.render("Press ENTER to Start", True, WHITE), (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 + 20))
+    screen.blit(font_small.render("Press Q to Quit", True, WHITE), (SCREEN_WIDTH // 2 - 70, SCREEN_HEIGHT // 2 + 70))
+    pygame.display.update()
+
+running, game_over, in_main_menu = True, False, True
 
 # Main game loop
-running = True
-game_over = False
-reset_aliens()  # Initialize the aliens
-while running:
-    screen.fill(BLACK)
+reset_boss()
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+while running:
+    if in_main_menu:
+        show_main_menu()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    in_main_menu = False  # Start the game
+                elif event.key == pygame.K_q:
+                    running = False  # Quit the game
+    else:
+        screen.fill(BLACK)
+        screen.blit(background_img, (0, 0))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if not game_over:
+                    if event.key == pygame.K_a:
+                        player_x_change = -player_speed
+                    elif event.key == pygame.K_d:
+                        player_x_change = player_speed
+                    elif event.key == pygame.K_w:
+                        player_y_change = -player_speed
+                    elif event.key == pygame.K_s:
+                        player_y_change = player_speed
+                elif event.key == pygame.K_r:
+                    game_over = False
+                    reset_game()
+            elif event.type == pygame.KEYUP:
+                if event.key in [pygame.K_a, pygame.K_d]:
+                    player_x_change = 0
+                if event.key in [pygame.K_w, pygame.K_s]:
+                    player_y_change = 0
+
+        if bullet_cooldown == 0:
+            fire_player_bullet(player_x, player_y)
+            bullet_cooldown = AUTO_FIRE_RATE
+        else:
+            bullet_cooldown -= 1
 
         if not game_over:
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
-                    player_x_change = -player_speed
-                if event.key == pygame.K_d:
-                    player_x_change = player_speed
-                if event.key == pygame.K_SPACE:
-                    if bullet_state == "ready":
-                        bullet_x = player_x
-                        fire_bullet(bullet_x, bullet_y)
+            player_x = max(0, min(SCREEN_WIDTH - 64, player_x + player_x_change))
+            player_y = max(0, min(SCREEN_HEIGHT - 64, player_y + player_y_change))
 
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_a or event.key == pygame.K_d:
-                    player_x_change = 0
-        else:
-            # Retry the game when "R" key is pressed after game over
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_r:
-                game_over = False
-                reset_game()
+            boss_x += boss_speed_x * boss_direction_x
+            boss_y += boss_speed_y * boss_direction_y
 
-    if not game_over:
-        # Player movement
-        player_x += player_x_change
-        if player_x <= 0:
-            player_x = 0
-        elif player_x >= screen_width - 64:
-            player_x = screen_width - 64
+            if boss_x <= 0 or boss_x >= SCREEN_WIDTH - 64:
+                boss_direction_x *= -1
+            if boss_y <= 20 or boss_y >= 150:
+                boss_direction_y *= -1
 
-        # Alien movement and check for collision with player
-        all_aliens_defeated = True
-        for i in range(len(alien_x)):
-            alien_x[i] += alien_x_change[i]
-            if alien_x[i] <= 0 or alien_x[i] >= screen_width - 64:
-                alien_x_change[i] *= -1
-                alien_y[i] += alien_y_change[i]
+            boss_attack()
 
-            # Check for collision between player and alien
-            if is_collision(alien_x[i], alien_y[i], player_x, player_y):
-                game_over = True
-                break
+            for bullet in boss_bullets[:]:
+                bullet["x"] += bullet["x_change"]
+                bullet["y"] += bullet["y_change"]
+                if bullet["y"] > SCREEN_HEIGHT or bullet["x"] < 0 or bullet["x"] > SCREEN_WIDTH:
+                    boss_bullets.remove(bullet)
+                elif is_collision(bullet["x"], bullet["y"], player_x, player_y):
+                    lives -= 1
+                    boss_bullets.remove(bullet)
+                    if lives == 0:
+                        game_over = True
+                screen.blit(boss_bullet_img, (bullet["x"], bullet["y"]))
 
-            # Collision detection between bullet and alien
-            collision = is_collision(alien_x[i], alien_y[i], bullet_x, bullet_y)
-            if collision:
-                bullet_y = player_y
-                bullet_state = "ready"
-                alien_x[i] = random.randint(0, screen_width - 64)
-                alien_y[i] = random.randint(50, 150)
-                score += 1
+            for bullet in player_bullets[:]:
+                bullet["y"] -= player_bullet_speed
+                if bullet["y"] < 0:
+                    player_bullets.remove(bullet)
+                elif is_collision(bullet["x"], bullet["y"], boss_x, boss_y):
+                    boss_health -= 1
+                    player_bullets.remove(bullet)
+                    if boss_health <= 0:
+                        score += 250
+                        level += 1
+                        reset_boss()
+                screen.blit(player_bullet_img, (bullet["x"], bullet["y"]))
 
-            # Check if there are still aliens active
-            if alien_y[i] < screen_height:
-                all_aliens_defeated = False
+            player(player_x, player_y)
+            boss(boss_x, boss_y)
+            show_score(10, 10)
+            show_level(10, 40)
+            show_lives(10, 70)
+            show_boss_health()
 
-            alien(alien_x[i], alien_y[i])
+        if game_over:
+            show_game_over()
 
-        # If all aliens are defeated, increase the level
-        if all_aliens_defeated:
-            level += 1
-            alien_speed += 1  # Increase alien speed per level
-            reset_aliens()  # Reset alien positions and speeds
-
-        # Bullet movement
-        if bullet_state == "fire":
-            fire_bullet(bullet_x, bullet_y)
-            bullet_y -= bullet_y_change
-
-        if bullet_y <= 0:
-            bullet_y = player_y
-            bullet_state = "ready"
-
-        # Display player, score, and level
-        player(player_x, player_y)
-        show_score(10, 10)
-        show_level(10, 40)
-
-    # Display Game Over text if game is over
-    if game_over:
-        show_game_over()
-
-    pygame.display.update()
+        pygame.display.update()
