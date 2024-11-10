@@ -18,6 +18,7 @@ pygame.display.set_caption("Defeat The Immortal Alien")
 
 # Colors and images
 BLACK, WHITE, RED, GREEN = (0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0)
+main_menu_img= pygame.image.load("main_menu.png")
 player_img = pygame.image.load("player.png")
 boss_img = pygame.image.load("alien.png")
 player_bullet_img = pygame.image.load("bullet.png")
@@ -71,8 +72,9 @@ def fire_boss_bullet(x, y, angle):
         "y_change": boss_bullet_speed * math.sin(angle)
     })
 
-#Collision for bullets boss and player
+#Collision/Hitbox for bullets player and boss
 
+#Player hit-box
 RED_AREA_Y = 40  # Adjust based on actual position of the red area in the player image
 RED_AREA_HEIGHT = 20  # Adjust based on the height of the red area
 
@@ -87,7 +89,8 @@ def is_bullet_hitting_red_area(bullet_x, bullet_y, player_xes, player_yes):
         return red_area_top <= bullet_y <= red_area_bottom
     return False
 
-# Define the purple line's region (assumed to be part of the boss image).
+#Boss hit-box
+#the purple line's region (assumed to be part of the boss image).
 PURPLE_LINE_Y = 70  # Adjust based on actual position of the purple line in the boss image
 PURPLE_LINE_HEIGHT = 10  # Adjust based on the thickness of the purple line
 
@@ -170,11 +173,14 @@ def boss_attack():
     else:
         boss_attack_cooldown -= 1
 
+#Main menu display!!!
+
 def show_main_menu():
-    screen.fill(BLACK)
-    screen.blit(font_large.render("Defeat The Immortal Alien", True, WHITE), (SCREEN_WIDTH // 2 - 315, SCREEN_HEIGHT // 2 - 100))
-    screen.blit(font_small.render("Press ENTER to Start", True, WHITE), (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 + 20))
-    screen.blit(font_small.render("Press Q to Quit", True, WHITE), (SCREEN_WIDTH // 2 - 70, SCREEN_HEIGHT // 2 + 70))
+    screen.fill(BLACK)  # Optional!!! if you want a blank background under the image
+    screen.blit(main_menu_img, (0, 0))  # Display the main menu image as the background
+    screen.blit(font_large.render("Defeat The Immortal Alien", True, WHITE), (SCREEN_WIDTH // 2 - 315, SCREEN_HEIGHT // 2 - 100)) #Display the title
+    screen.blit(font_small.render("Press ENTER to Start", True, WHITE), (SCREEN_WIDTH // 2 - 110, SCREEN_HEIGHT // 2 + 20)) #Display the Start button
+    screen.blit(font_small.render("Press Q to Quit", True, WHITE), (SCREEN_WIDTH // 2 - 80, SCREEN_HEIGHT // 2 + 70)) #Display the Quit 
     pygame.display.update()
 
 running, game_over, in_main_menu = True, False, True
@@ -275,3 +281,4 @@ while running:
             show_game_over()
 
         pygame.display.update()
+
