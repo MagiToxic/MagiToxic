@@ -4,14 +4,17 @@ from pygame import mixer
 # Starting the Pygame
 pygame.init()
 
+# Set the screen to fullscreen
+screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
 # Add background music
 mixer.music.load("background.wav")
 mixer.music.play(2)
 
 # Screen setup
-SCREEN_WIDTH, SCREEN_HEIGHT = 900, 700
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("MagiWanda In Dream World")
+SCREEN_WIDTH, SCREEN_HEIGHT = 1000, 700
+screens = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Defeat The Immortal Alien")
 
 # Colors and images
 BLACK, WHITE, RED, GREEN = (0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0)
@@ -25,7 +28,7 @@ background_img = pygame.image.load("background.png")
 player_x, player_y = SCREEN_WIDTH // 2, SCREEN_HEIGHT - 60
 player_speed = 10
 player_x_change, player_y_change = 0, 0
-lives = 3
+health = 50
 
 # Boss settings
 boss_x, boss_y = SCREEN_WIDTH // 2 - 32, 50
@@ -59,7 +62,7 @@ def boss(x, y):
     screen.blit(boss_img, (x, y))
 
 def fire_player_bullet(x, y):
-    player_bullets.append({"x": x + 16, "y": y})
+    player_bullets.append({"x": x + 23, "y": y})
 
 def fire_boss_bullet(x, y, angle):
     boss_bullets.append({
@@ -67,6 +70,38 @@ def fire_boss_bullet(x, y, angle):
         "x_change": boss_bullet_speed * math.cos(angle),
         "y_change": boss_bullet_speed * math.sin(angle)
     })
+
+#Collision for bullets boss and player
+
+RED_AREA_Y = 40  # Adjust based on actual position of the red area in the player image
+RED_AREA_HEIGHT = 20  # Adjust based on the height of the red area
+
+def is_bullet_hitting_red_area(bullet_x, bullet_y, player_xes, player_yes):
+    # Calculate the red area's position relative to the player
+    red_area_top = player_yes + RED_AREA_Y
+    red_area_bottom = red_area_top + RED_AREA_HEIGHT
+
+    # Check if the bullet is within the horizontal bounds of the player
+    if player_xes <= bullet_x <= player_x + player_img.get_width():
+        # Check if the bullet is within the vertical bounds of the red area
+        return red_area_top <= bullet_y <= red_area_bottom
+    return False
+
+# Define the purple line's region (assumed to be part of the boss image).
+PURPLE_LINE_Y = 70  # Adjust based on actual position of the purple line in the boss image
+PURPLE_LINE_HEIGHT = 10  # Adjust based on the thickness of the purple line
+
+def is_bullet_hitting_purple_line(bullet_x, bullet_y, boss_xis, boss_yis):
+    # Calculate the purple line's position relative to the boss
+    purple_line_top = boss_yis + PURPLE_LINE_Y
+    purple_line_bottom = purple_line_top + PURPLE_LINE_HEIGHT
+
+    # Check if the bullet is within the horizontal bounds of the boss
+    if boss_xis <= bullet_x <= boss_x + boss_img.get_width():
+        # Check if the bullet is within the vertical bounds of the purple line
+        return purple_line_top <= bullet_y <= purple_line_bottom
+    return False
+
 
 def is_collision(x1, y1, x2, y2):
     return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) < 27
@@ -82,7 +117,7 @@ def show_level(x, y):
     screen.blit(font_small.render(f"Level: {level}", True, WHITE), (x, y))
 
 def show_lives(x, y):
-    screen.blit(font_small.render(f"Lives: {lives}", True, WHITE), (x, y))
+    screen.blit(font_small.render(f"Health: {health}", True, WHITE), (x, y))
 
 def show_boss_health():
     health_bar_width = 400
@@ -97,14 +132,15 @@ def reset_boss():
     boss_x, boss_y = SCREEN_WIDTH // 2 - 32, 50
 
 def reset_game():
-    global player_x, player_y, player_x_change, player_y_change, lives, score, level, boss_bullets, player_bullets
+    global player_x, player_y, player_x_change, player_y_change, health, score, level, boss_bullets, player_bullets
     player_x, player_y = SCREEN_WIDTH // 2, SCREEN_HEIGHT - 60
     player_x_change, player_y_change = 0, 0
-    lives, score, level = 3, 0, 1
+    health, score, level = 3, 0, 1
     boss_bullets.clear()
     player_bullets.clear()
     reset_boss()
 
+#Boss attack function
 def boss_attack():
     global boss_attack_cooldown, boss_attack_pattern
     if boss_attack_cooldown == 0:
@@ -136,7 +172,7 @@ def boss_attack():
 
 def show_main_menu():
     screen.fill(BLACK)
-    screen.blit(font_large.render("Magi In Dream World", True, WHITE), (SCREEN_WIDTH // 2 - 245, SCREEN_HEIGHT // 2 - 100))
+    screen.blit(font_large.render("Defeat The Immortal Alien", True, WHITE), (SCREEN_WIDTH // 2 - 315, SCREEN_HEIGHT // 2 - 100))
     screen.blit(font_small.render("Press ENTER to Start", True, WHITE), (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 + 20))
     screen.blit(font_small.render("Press Q to Quit", True, WHITE), (SCREEN_WIDTH // 2 - 70, SCREEN_HEIGHT // 2 + 70))
     pygame.display.update()
@@ -208,10 +244,10 @@ while running:
                 bullet["y"] += bullet["y_change"]
                 if bullet["y"] > SCREEN_HEIGHT or bullet["x"] < 0 or bullet["x"] > SCREEN_WIDTH:
                     boss_bullets.remove(bullet)
-                elif is_collision(bullet["x"], bullet["y"], player_x, player_y):
-                    lives -= 1
+                elif is_bullet_hitting_red_area(bullet["x"], bullet["y"], player_x, player_y):
+                    health -= 1
                     boss_bullets.remove(bullet)
-                    if lives == 0:
+                    if health == 0:
                         game_over = True
                 screen.blit(boss_bullet_img, (bullet["x"], bullet["y"]))
 
@@ -219,8 +255,8 @@ while running:
                 bullet["y"] -= player_bullet_speed
                 if bullet["y"] < 0:
                     player_bullets.remove(bullet)
-                elif is_collision(bullet["x"], bullet["y"], boss_x, boss_y):
-                    boss_health -= 1
+                elif is_bullet_hitting_purple_line(bullet["x"], bullet["y"], boss_x, boss_y):
+                    boss_health -= 2
                     player_bullets.remove(bullet)
                     if boss_health <= 0:
                         score += 250
