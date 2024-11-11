@@ -138,7 +138,7 @@ def reset_game():
     global player_x, player_y, player_x_change, player_y_change, health, score, level, boss_bullets, player_bullets
     player_x, player_y = SCREEN_WIDTH // 2, SCREEN_HEIGHT - 60
     player_x_change, player_y_change = 0, 0
-    health, score, level = 3, 0, 1
+    health, score, level = 50, 0, 1
     boss_bullets.clear()
     player_bullets.clear()
     reset_boss()
@@ -180,7 +180,7 @@ def show_main_menu():
     screen.blit(main_menu_img, (0, 0))  # Display the main menu image as the background
     screen.blit(font_large.render("Defeat The Immortal Alien", True, WHITE), (SCREEN_WIDTH // 2 - 315, SCREEN_HEIGHT // 2 - 100)) #Display the title
     screen.blit(font_small.render("Press ENTER to Start", True, WHITE), (SCREEN_WIDTH // 2 - 110, SCREEN_HEIGHT // 2 + 20)) #Display the Start button
-    screen.blit(font_small.render("Press Q to Quit", True, WHITE), (SCREEN_WIDTH // 2 - 80, SCREEN_HEIGHT // 2 + 70)) #Display the Quit 
+    screen.blit(font_small.render("Press Q to Quit", True, WHITE), (SCREEN_WIDTH // 2 - 80, SCREEN_HEIGHT // 2 + 70)) #Display the Quit
     pygame.display.update()
 
 running, game_over, in_main_menu = True, False, True
@@ -281,4 +281,3 @@ while running:
             show_game_over()
 
         pygame.display.update()
-
