@@ -1,3 +1,4 @@
+
 # Main function that serves as the entry point for the program
 def main():
     # Display a welcome banner with program details
@@ -229,7 +230,6 @@ def main():
 
             print("output: tol. pumunta si speed dito sa pilipinas.")
 
-            input("\nPress Enter to return to the main menu.")
 
         elif choice == '11':  # Explain regular expressions
             print("\n--- Regular Expressions ---")
