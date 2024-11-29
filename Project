@@ -1,4 +1,6 @@
+# Main function that serves as the entry point for the program
 def main():
+    # Display a welcome banner with program details
     print("╔═════════════════════════════════════════════════════════════════════════════╗")
     print("║                                                                             ║")
     print("║                    Welcome to the Python Learning Program!                  ║")
@@ -14,7 +16,9 @@ def main():
     print("║                  Learn Python and build your skills progressively!          ║")
     print("╚═════════════════════════════════════════════════════════════════════════════╝")
 
+    # Infinite loop to keep the program running until the user exits
     while True:
+        # Display a menu of Python concepts
         print("\n--- Python Concepts Menu ---")
         print("Beginner ")
         print("1. Data Types")
@@ -26,272 +30,92 @@ def main():
         print("6. Exception Handling")
         print("7. File Handling")
         print("8. Lambda Functions")
-        print("Advance ")
+        print("Advanced ")
         print("9. Classes and Objects")
         print("10. Decorators")
         print("11. Regular Expressions")
         print("12. Generators")
 
-        choice = input("Choose a concept (1-12) or type 'Exit' to quit: ")
+        choice = input("Choose a concept (1-12) or type 'Exit' to quit: ")  # Prompt user for input
 
-        if choice == '1':
+        if choice == '1':  # Explain data types
             print("\n--- Data Types List ---")
             print("Python has several built-in data types to store values. Here are the main types:")
+            print("Numeric Types: int, float, complex")
+            print("Sequence Types: str, list, tuple")
+            print("Set Types: set, frozenset")
+            print("Mapping Type: dict")
+            print("Boolean Type: bool")
 
-            print("\nNumeric Types: ")
-            print("1. int: Represents integers (whole numbers).")
-            print("Example: 1, 69, 69420")
-            print("\n2. float: Represents floating-point numbers (decimals).")
-            print("Example: 1.3, 6.9, 69.420")
-            print("\n3. complex: Represents complex numbers.")
-            print("Example: 5 + 9j (j is the imaginary unit)")
-            print("j = complex(2, -3)")
-            print("print(j)")
-            print("j = complex(1)")
-            print("print(j)")
-            print("j = complex()")
-            print("print(j)")
-            print("j = complex('5-9j')")
-            print("print(j)")
-            print("output: (2-3j)")
-            print("        (1+0j)")
-            print("        0j")
-            print("        (5-9j)")
-
-            print("\nSequence Types: ")
-            print("\n1. str: Represents strings, which are sequences of characters.")
-            print("Example: 'Hello, World!'")
-            print("\n2. list: Represents ordered collections of items, which can be of different types.")
-            print("Example: [1, 2, 3, 4 'limb']")
-            print("\n3. tuple: Similar to lists but immutable (cannot be changed).")
-            print("Example number = (1, 2, 3, 4)")
-            print("print(number) ")
-            print("output: (1, 2, 3, 4) ")
-
-            print("\nSet Types: ")
-            print("\n1. set: Represents an unordered collection of unique items.")
-            print("Example: {1, 2, 3, 4}")
-            print("\n2. frozenset: Similar to a set but immutable.")
-            print("Example: frozenset({1, 2, 3})")
-
-            print("\nMapping Type: ")
-            print("1. dict (dictionary): Represents a collection of key-value pairs.")
-            print("Example: {'name': 'Greg', 'age': 21}")
-
-            print("\nBoolean Type: ")
-            print("1. bool: Represents boolean values, either True or False.")
-            print("Example: True, False")
-
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '2':
+        elif choice == '2':  # Explain control structures
             print("\n--- Control Structures (if statements) ---")
             print("Control structures like if statements allow you to execute code based on conditions.")
             print("Example:")
-            print("if x > 10:")
-            print("print('x is greater than 10')")
-            print("You can also use elif and else to create more complex conditions.")
-            print("Example:")
-            print("a = 200")
-            print("b = 33")
-            print("if b > a:")
-            print("  print(''b is greater than a'')")
-            print("elif a == b:")
-            print(" print(''a and b are equal'')")
-            print("else:")
-            print("  print(''a is greater than b'')")
-            print("output: a is greater than b ")
+            print("if x > 10: print('x is greater than 10')")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '3':
-            print("\n𖦹 Loops 𖦹")
+        elif choice == '3':  # Explain loops
+            print("\n--- Loops ---")
             print("Loops are used for iterating over a sequence (like a list or a string).")
-            print("Example:")
-            print("fruits = [''apple'', ''banana'', ''cherry'']")
-            print("for x in fruits:")
-            print("  print(x)")
-            print("output: apple")
-            print("        banana")
-            print("        cherry")
-            print("\nExample of a while loop:")
-            print("i = 0")
-            print("while i < 6:")
-            print("    print(i)")
-            print("    if (i == 3):")
-            print("      break")
-            print("    i += 1")
-            print("output: 1")
-            print("        2")
-            print("        3")
+            print("Example of a for loop:")
+            print("for x in range(5): print(x)")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '4':
-            print("\n⚙️ Functions ⚙️")
+        elif choice == '4':  # Explain functions
+            print("\n--- Functions ---")
             print("Functions are reusable pieces of code that perform a specific task.")
-            print("You can define a function using the def keyword.")
-            print("Example: ")
-            print("def greet(**kwargs): ")
-            print("    for key, value in kwargs.items():")
-            print("    print(f'{key} : {value}')")
-            print("greet(name='Johnny Sins', age=45, country='USA')")
-            print("output: name : Johnny Sins")
-            print("        age : 45")
-            print("        country : USA")
-            print("\nOr")
-            print("\ndef happy_birthday(name, age): ")
-            print("      print(f'' happy birthday to you {name}! '')")
-            print("      print(f'' You are {age} year old!'')     ")
-            print("      print(f'' Happy birthday to you!'')     ")
-            print("happy_birthday(''Steve Rogers'', 75) ")
-            print("happy_birthday(''Tony Stark'', 51) ")
-            print("happy_birthday(''Thor Odinson'', 1500)")
-            print("\noutput: Happy birthday to you Steve Rogers! ")
-            print("        You are 75 years old! ")
-            print("        Happy birthday to you!")
-            print("\n        Happy birthday to you Tony Stark! ")
-            print("        You are 51 years old! ")
-            print("        Happy birthday to you!")
-            print("\n        Happy birthday to you Thor Odinson! ")
-            print("        You are 1500 years old! ")
-            print("        Happy birthday to you!")
+            print("Example:")
+            print("def greet(name): return f'Hello, {name}!'")
 
-            print("\nFunctions can also take multiple arguments and return values.")
-            print("Example of a function")
-            print("def add(a, b):")
-            print("return a + b")
-            print("result = add(5, 3)")
-
-            input("\nPress Enter to return to the main menu. ")
-
-        elif choice == '5':
+        elif choice == '5':  # Explain list comprehensions
             print("\n--- List Comprehensions ---")
             print("List comprehensions provide a concise way to create lists.")
-            print("Example: ")
-            print("even_numbers = [num for num in range(1, 10) if num % 2 == 0 ]")
-            print("\nprint(even_numbers) ")
-            print("\noutput: [2, 4, 6, 8] ")
+            print("Example: even_numbers = [num for num in range(10) if num % 2 == 0]")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '6':
+        elif choice == '6':  # Explain exception handling
             print("\n--- Exception Handling ---")
             print("Exception handling helps prevent crashes from errors.")
-            print("Example: ")
-            print("try:")
-            print("    x = int(input('Enter a number: '))")
-            print("except ValueError:")
-            print("    print('Invalid input, please enter a number.')")
+            print("Example: try-except block to handle invalid input.")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '7':
+        elif choice == '7':  # Explain file handling
             print("\n--- File Handling ---")
             print("File handling is used to read, write, and manage files.")
-            print("Example:")
-            print("with open('example.txt', 'w') as file:")
-            print("    file.write('Hello, World!')")
-            print("\nExample of reading from a file:")
-            print("with open('example.txt', 'r') as file:")
-            print("    content = file.read()")
-            print("    print(content)")
+            print("Example: with open('file.txt', 'r') as file: content = file.read()")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '8':
+        elif choice == '8':  # Explain lambda functions
             print("\n--- Lambda Functions ---")
             print("Lambda functions are anonymous, small, and simple functions.")
-            print("Example:")
-            print("add = lambda x, y: x + y")
-            print("print(add(5, 3))")
-            print("output: 8")
+            print("Example: add = lambda x, y: x + y")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '9':
+        elif choice == '9':  # Explain classes and objects
             print("\n--- Classes and Objects ---")
-            print("Python is object-oriented. Classes define the structure of objects.")
-            print("Example: ")
-            print("class Room: ")
-            print("   length = 0.0 ")
-            print("   breadth = 0.0")
-            print("\n   def calculate_area(self): ")
-            print("   print(''Area of Room ='', self.length * self.breadth) ")
-            print(" study_room = Room()")
-            print("\nstudy_room.length = 42.5")
-            print("study_room.breadth = 30.8")
-            print("\nstudy_room.calculate_area()")
-            print("\noutput: Area of Room = 1309.0 ")
+            print("Classes define the structure of objects.")
+            print("Example: class Dog: def bark(self): print('Woof!')")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '10':
+        elif choice == '10':  # Explain decorators
             print("\n--- Decorators ---")
-            print("Decorators is a design pattern that allows you to modify the functionality of a function by wrapping it in another function..")
-            print("Example: ")
-            print("def shout(text):")
-            print("    return text.upper() ")
-            print("\ndef whisper(text):")
-            print("    return text.lower()")
-            print("\ndef greet(func): ")
-            print("    greeting = func(''Tol. Pumunta si speed dito sa Pilipinas''.) ")
-            print("    greeting")
-            print("\ngreet(shout) ")
-            print("greet(whisper) ")
-            print("\noutput: TOL. PUMUNTA SI SPEED DITO SA PILIPINAS.")
+            print("Decorators modify the behavior of a function.")
+            print("Example: def decorator(func): return wrapper")
 
-            print("output: tol. pumunta si speed dito sa pilipinas.")
-
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '11':
+        elif choice == '11':  # Explain regular expressions
             print("\n--- Regular Expressions ---")
             print("Regular expressions are patterns used to match text.")
-            print("Example:")
-            print("import re")
-            print("txt = ''The rain in Spain'' ")
-            print(" x = re.search(''^The.*Spain$'', txt)")
-            print("if x:")
-            print("  print(''YES! We have a match!'') ")
-            print("else: ")
-            print("  print(''No match'')")
-            print("output: YES! We have a match!")
+            print("Example: import re; re.match('pattern', 'text')")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == '12':
+        elif choice == '12':  # Explain generators
             print("\n--- Generators ---")
-            print("Generators are functions that return an iterator which yields values one at a time.")
-            print("Example:")
-            print("def count_up_to(max):")
-            print("    count = 1")
-            print("    while count <= max:")
-            print("        yield count")
-            print("        count += 1")
-            print("counter = count_up_to(5)")
-            print("for num in counter:")
-            print("    print(num)")
-            print("output:")
-            print("        1")
-            print("        2 ")
-            print("        3 ")
-            print("        4 ")
-            print("        5 ")
+            print("Generators are functions that yield values one at a time.")
+            print("Example: def count_up_to(n): yield from range(n)")
 
-            input("\nPress Enter to return to the main menu.")
-
-        elif choice == 'exit':
-            print(" 🥰 Thank you for using the Python Learning Program. Goodbye! 🥰")
-            break
-        elif choice == 'Exit':
-            print(" 🥰 Thank you for using the Python Learning Program. Goodbye! 🥰")
+        elif choice.lower() == 'exit':  # Exit the program
+            print("🥰 Thank you for using the Python Learning Program. Goodbye! 🥰")
             break
 
-        else:
-            print(" 🙅🏻‍♂️ Invalid option. Please choose a number between 1 and 12.")
+        else:  # Handle invalid inputs
+            print("🙅🏻‍♂️ Invalid option. Please choose a number between 1 and 12.")
 
+        # Prompt to return to the main menu
         input("\nPress Enter to return to the main menu.")
 
+
+# Check if the script is run as the main module and execute the main function
 if __name__ == "__main__":
     main()
