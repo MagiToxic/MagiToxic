@@ -1,0 +1,740 @@
+def main():
+    print("╔═════════════════════════════════════════════════════════════════════════════╗")
+    print("║                                                                             ║")
+    print("║                    Welcome to the Python Learning Program!                  ║")
+    print("║                                 Learn Python                                ║")
+    print("║                                                                             ║")
+    print("╠═════════════════════════════════════════════════════════════════════════════╣")
+    print("║   Beginner           │ Intermediate              │ Advanced                 ║")
+    print("║  ● Data Types        │ ● List Comprehensions     │ ● Classes and Objects    ║")
+    print("║  ● Loops             │ ● Exception Handling      │ ● Decorators             ║")
+    print("║  ● Control Structure │ ● File Handling           │ ● Regular Expressions    ║")
+    print("║  ● Functions         │ ● Lambda Functions        │ ● Generators             ║")
+    print("╠═════════════════════════════════════════════════════════════════════════════╣")
+    print("║                  Learn Python and build your skills progressively!          ║")
+    print("╚═════════════════════════════════════════════════════════════════════════════╝")
+
+    while True: # Infinite loop to keep the program running until the user exits
+        print("\n--- Python Concepts Menu ---")   # Display a menu of Python concepts
+        print("Beginner ")
+        print("1. Data Types")
+        print("2. Control Structures (if statements)")
+        print("3. Loops")
+        print("4. Functions")
+        print("Intermediate ")
+        print("5. List Comprehensions")
+        print("6. Exception Handling")
+        print("7. File Handling")
+        print("8. Lambda Functions")
+        print("Advanced ")
+        print("9. Classes and Objects")
+        print("10. Decorators")
+        print("11. Regular Expressions")
+        print("12. Generators")
+
+        choice = input("Choose a concept (1-12) or type 'Exit' to quit: ")  #user for input
+
+        if choice == '1':  # Explain data types
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                               Numeric Types                                               ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║  1. int                           │  2. float                         │  3. complex                       ║")
+            print(
+                "║    Represents integers            │    Represents floating-point      │    Represents complex             ║")
+            print(
+                "║    (whole numbers).               │    numbers (decimals).            │    numbers.                       ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "║              example:             │              example:             │              example:             ║")
+            print(
+                "║            1, 69, 69420           │         1.3, 6.9, 69.420          │  5 + 9j (j is the imaginary unit) ║")
+            print(
+                "║                                   │                                   │  j = complex(2, -3                ║")
+            print(
+                "║                                   │                                   │  print(j)                         ║")
+            print(
+                "║                                   │                                   │  j = complex(1)                   ║")
+            print(
+                "║                                   │                                   │  print(j)                         ║")
+            print(
+                "║                                   │                                   │  j = complex()                    ║")
+            print(
+                "║                                   │                                   │  print(j)                         ║")
+            print(
+                "║                                   │                                   │  j = complex('5-9j')              ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "║                                   │                                   │ output:                           ║")
+            print(
+                "║                                   │                                   │         (2-3j)                    ║")
+            print(
+                "║                                   │                                   │         (1+0j)                    ║")
+            print(
+                "║                                   │                                   │         0j                        ║")
+            print(
+                "║                                   │                                   │         (5-9j)                    ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                                               Sequence Types                                              ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║  1. str                           │  2. list                          │  3. tuple                         ║")
+            print(
+                "║   Represents strings              │    Represents ordered collections │    Similar to lists but           ║")
+            print(
+                "║   which are sequences             │    of items,which can be of       │    immutable (cannot be changed). ║")
+            print(
+                "║   of characters.                  │    different types.               │                                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "║              example:             │              example:             │              example:             ║")
+            print(
+                "║           'Hello, World!          │        [1, 2, 3, 4 'limb']        │   number = (1, 2, 3, 4)           ║")
+            print(
+                "║                                   │                                   │   print(number)                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "║                                   │                                   │   output:                         ║")
+            print(
+                "║                                   │                                   │            (1, 2, 3, 4)           ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                                                 Set Types                                                 ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║  1. set:                          │  2. frozenset                     │                                   ║")
+            print(
+                "║    Represents an                  │    Similar to a set               │                                   ║")
+            print(
+                "║    unordered collection           │    but immutable.                 │                                   ║")
+            print(
+                "║    of unique items.               │                                   │                                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "║              example:             │              example:             │                                   ║")
+            print(
+                "║            {1, 2, 3, 4}           │        frozenset({1, 2, 3})       │                                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                                                Mapping Type                                               ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║  1. dict (dictionary)             │                                   │                                   ║")
+            print(
+                "║    Represents a collection of     │                                   │                                   ║")
+            print(
+                "║    key-value pairs.               │                                   │                                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "║              example:             │                                   │                                   ║")
+            print(
+                "║    {'name': 'Greg', 'age': 21}    │                                   │                                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                                                Boolean Type                                               ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║  1. bool                          │                                   │                                   ║")
+            print(
+                "║    Represents boolean values      │                                   │                                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "║              example:             │                                   │                                   ║")
+            print(
+                "║            True, False            │                                   │                                   ║")
+            print(
+                "║                                   │                                   │                                   ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice == '2':  # Explain control structures
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                     Control Structures (if statements)                                    ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║            Control structures like if statements allow you to execute code based on conditions.           ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                  example:                                                 ║")
+            print(
+                "║  a = 33                                             │  a = 102                                            ║")
+            print(
+                "║  b = 200                                            │  b = 69                                             ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  if b > a:                                          │  if a > b:                                          ║")
+            print(
+                "║    print(''b is greater than a'')                   │    print(''a is greater than b'')                   ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║             b is greater than a                     │            a is greater than b                      ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                     You can also use elif and else to create more complex conditions.                     ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                  example:                                                 ║")
+            print(
+                "║      a = 200                                        │      a = 200                                        ║")
+            print(
+                "║      b = 33                                         │      b = 33                                         ║")
+            print(
+                "║      if b > a:                                      │      if b > a:                                      ║")
+            print(
+                "║        print(''b is greater than a'')               │        print(''b is greater than a'')               ║")
+            print(
+                "║      elif a == b:                                   │      else:                                          ║")
+            print(
+                "║        print(''a and b are equal'')                 │        print(''b is not greater than a'')           ║")
+            print(
+                "║      else:                                          │                                                     ║")
+            print(
+                "║        print(''a is greater than b'')               │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            a is greater than b                      │            b is not greater than a                  ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice == '3':  # Explain loops
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                                   Loops                                                   ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                    Loops are used for iterating over a sequence (like a list or a string)                 ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                  example:                                                 ║")
+            print(
+                "║  loop                                               │   while loop                                        ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║   fruits = [''apple'', ''banana'', ''cherry'']      │  i = 0                                              ║")
+            print(
+                "║   for x in fruits:                                  │  while i < 6:                                       ║")
+            print(
+                "║      print(x)                                       │      print(i)                                       ║")
+            print(
+                "║                                                     │      if (i == 3):                                   ║")
+            print(
+                "║                                                     │        break                                        ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║           apple                                     │            1                                        ║")
+            print(
+                "║           banana                                    │            2                                        ║")
+            print(
+                "║           cherry                                    │            3                                        ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice == '4':  # Explain functions
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                                 Functions                                                 ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                    Functions are reusable pieces of code that perform a specific task.                    ║")
+            print(
+                "║                            You can define a function using the def keyword.                               ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                 example:                                                  ║")
+            print(
+                "║    def my_function(name):                          │  def my_function(*kids):                             ║")
+            print(
+                "║      print(name + '' Bernardus'')                  │    print(''The youngest child is '' + kids[2])       ║")
+            print(
+                "║                                                    │                                                      ║")
+            print(
+                "║    my_function(''Emil'')                           │  my_function(''Emil'', ''Tobias'', ''Linus'')        ║")
+            print(
+                "║    my_function(''Tobias'')                         │                                                      ║")
+            print(
+                "║    my_function(''Linus'')                          │                                                      ║")
+            print(
+                "║                                                    │                                                      ║")
+            print(
+                "║  output:                                           │  output:                                             ║")
+            print(
+                "║            Emil Bernardus                          │            The youngest child is Linus               ║")
+            print(
+                "║            Tobias Bernardus                        │                                                      ║")
+            print(
+                "║            Linus Bernardus                         │                                                      ║")
+            print(
+                "║                                                    │                                                      ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                       Functions can also take multiple arguments and return values.                       ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                 example:                                                  ║")
+            print(
+                "║    def calculateTotalSum(*arguments):              │     def displayMessage(msg):                         ║")
+            print(
+                "║        totalSum = 0                                │            print(''Hello ''+msg+'' !'')              ║")
+            print(
+                "║        for number in arguments:                    │                                                      ║")
+            print(
+                "║            totalSum += number                      │     msg = ''Welcome to Another World!''              ║")
+            print(
+                "║        print(totalSum)                             │                                                      ║")
+            print(
+                "║                                                    │     displayMessage(msg)                              ║")
+            print(
+                "║    calculateTotalSum(5, 4, 3, 2, 1)                │                                                      ║")
+            print(
+                "║                                                    │                                                      ║")
+            print(
+                "║                                                    │                                                      ║")
+            print(
+                "║  output:                                           │  output:                                             ║")
+            print(
+                "║             15                                     │             Welcome to Another World!                ║")
+            print(
+                "║                                                    │                                                      ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice == '5':  # Explain list comprehensions
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                            List Comprehensions                                            ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                         List comprehensions provide a concise way to create lists.                        ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                 example:                                                  ║")
+            print(
+                "║    numbers = [1, 2, 3, 4]                           │  word = ''Python''                                  ║")
+            print(
+                "║                                                     │  vowels = ''aeiou''                                 ║")
+            print(
+                "║    doubled_numbers = [num * 2 for num in numbers]   │                                                     ║")
+            print(
+                "║                                                     │  result = [char for char in word if char in vowels] ║")
+            print(
+                "║    print(doubled_numbers)                           │                                                     ║")
+            print(
+                "║                                                     │  print(result)                                      ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            [2, 4, 6, 8]                             │            ['o']                                    ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice == '6':  # Explain exception handling
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                             Exception Handling                                            ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                           Exception handling helps prevent crashes from errors.                           ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                 example:                                                  ║")
+            print(
+                "║    try:                                             │  x = 5                                              ║")
+            print(
+                "║      print(x)                                       │  y = ''hello''                                      ║")
+            print(
+                "║    except:                                          │  try:                                               ║")
+            print(
+                "║      print(''An exception occurred'')               │      z = x + y                                      ║")
+            print(
+                "║                                                     │          print (word)                               ║")
+            print(
+                "║                                                     │  except TypeError:                                  ║")
+            print(
+                "║                                                     │      print(''Error: cannot add an int and a str'')  ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            An exception occurred                    │            Error: cannot add an int and a str       ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice == '7':  # Explain file handling
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                             File Handling                                                 ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                          File handling is used to read, write, and manage files.                          ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                 example:                                                  ║")
+            print(
+                "║    with open(''file.txt'', ''w'') as f:             │  with open(''greet.txt'', "r") as file:                ║")
+            print(
+                "║         f.write(''Hello World!!!'')                 │      data = file.readiness()                        ║")
+            print(
+                "║                                                     │      for line in data:                              ║")
+            print(
+                "║                                                     │          word = line.split()                        ║")
+            print(
+                "║                                                     │          print (word)                               ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            Hello World!!!                           │            ['Hello', 'world']                       ║")
+            print(
+                "║                                                     │            ['weathercocks']                         ║")
+            print(
+                "║                                                     │            ['123', '456']                           ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+
+        elif choice == '8':  # Explain lambda functions
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                             Lambda Functions                                              ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                   Lambda functions are anonymous, small, and simple functions.                            ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                  example:                                                 ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║   x = lambda a : a + 10                             │   def myfunc(n):                                    ║")
+            print(
+                "║   print(x(5))                                       │     return lambda a : a * n                         ║")
+            print(
+                "║       self.name = name                              │                                                     ║")
+            print(
+                "║       self.age = age                                │   mydoubler = myfunc(2)                             ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │   print(mydoubler(11))                              ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            15                                       │            22                                       ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+
+        elif choice == '9':  # Explain classes and objects
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                             Classes and Objects                                           ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                   Python is object-oriented. Classes define the structure of objects.                     ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                  example:                                                 ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║   class Person:                                     │   class Person:                                     ║")
+            print(
+                "║     def __init__(self, name, age):                  │     def __init__(self, name, age):                  ║")
+            print(
+                "║       self.name = name                              │       self.name = name                              ║")
+            print(
+                "║       self.age = age                                │       self.age = age                                ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║     def myfunc(self):                               │   p1 = Person(''John'', 39)                         ║")
+            print(
+                "║       print(''Hello my name is '' + self.name)      │                                                     ║")
+            print(
+                "║                                                     │   print(p1.name)                                    ║")
+            print(
+                "║    p1 = Person(''John'', 36)                        │   print(p1.age)                                     ║")
+            print(
+                "║    p1.myfunc()                                      │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            Hello my name is John                    │            John                                     ║")
+            print(
+                "║                                                     │            36                                       ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice == '10':  # Explain decorators
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                               Decorators                                                  ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                 Decorators is a design pattern that allows you to modify the functionality                ║")
+            print(
+                "║                             of a function by wrapping it in another function.                             ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                  example:                                                 ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║   def make_pretty(func):                            │   def greeting(name):                               ║")
+            print(
+                "║       def inner():                                  │       def hello():                                  ║")
+            print(
+                "║           print(''I got decorated'')                │           return ''Hello, '' + name + ''!''         ║")
+            print(
+                "║           func()                                    │       return hello                                  ║")
+            print(
+                "║       return inner                                  │                                                     ║")
+            print(
+                "║                                                     │   greet = greeting(''Atlantis'')                    ║")
+            print(
+                "║   def ordinary():                                   │    print(greet())                                   ║")
+            print(
+                "║       print(''I am ordinary'')                      │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            I am ordinary                            │            Hello, Atlantis!                         ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+
+        elif choice == '11':  # Explain regular expressions
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                               Regular Expressions                                         ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║                             Regular expressions are patterns used to match text.                          ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                  example:                                                 ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║   import re                                         │   import re                                         ║")
+            print(
+                "║   txt = ''The rain in Spain''                       │   pattern = '^a...s$'                               ║")
+            print(
+                "║   x = re.search(''^The.*Spain$'', txt)              │   test_string = 'abyss'                             ║")
+            print(
+                "║                                                     │   result = re.match(pattern, test_string)           ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │   if result:                                        ║")
+            print(
+                "║                                                     │     print(''Search successful.'')                   ║")
+            print(
+                "║                                                     │   else:                                             ║")
+            print(
+                "║                                                     │     print(''Search unsuccessful.'')	                ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            YES! We have a match!                    │            Search successful.                       ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice == '12':  # Explain generators
+            print(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════╗")
+            print(
+                "║                                                 Generators                                                ║")
+            print(
+                "╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════╣")
+            print(
+                "║            Generators are functions that return an iterator which yields values one at a time.            ║")
+            print(
+                "║                                                                                                           ║")
+            print(
+                "║                                                  example:                                                 ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║   def count_up_to(max):                             │    squares_generator = (i * i for i in range(5))    ║")
+            print(
+                "║       count = 1                                     │    for i in squares_generator:                      ║")
+            print(
+                "║       while count <= max:                           │        print(i)                                     ║")
+            print(
+                "║            yield count                              │                                                     ║")
+            print(
+                "║            count += 1                               │                                                     ║")
+            print(
+                "║   counter = count_up_to(5)                          │                                                     ║")
+            print(
+                "║   for num in counter                                │                                                     ║")
+            print(
+                "║       print(num)                                    │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "║  output:                                            │  output:                                            ║")
+            print(
+                "║            1                                        │           0                                         ║")
+            print(
+                "║            2                                        │           1                                         ║")
+            print(
+                "║            3                                        │           4                                         ║")
+            print(
+                "║            4                                        │           9                                         ║")
+            print(
+                "║            5                                        │           16                                        ║")
+            print(
+                "║            6                                        │                                                     ║")
+            print(
+                "║                                                     │                                                     ║")
+            print(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════╝")
+
+        elif choice.lower() == 'exit':  # Exit the program
+            print("🥰 Thank you for using the Python Learning Program. Goodbye! 🥰")
+            break
+
+        else:  # Handle invalid inputs
+            print("🙅🏻‍♂️ Invalid option. Please choose a number between 1 and 12.")
+
+        input("\nPress Enter to return to the main menu.")  # Prompt to return to the main menu
+
+if __name__ == "__main__": # Check if the script is run as the main module and execute the main function
+    main()
