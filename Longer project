@@ -653,7 +653,7 @@ def main():
             print(
                 "║                                                     │   else:                                             ║")
             print(
-                "║                                                     │     print(''Search unsuccessful.'')	                ║")
+                "║                                                     │     print(''Search unsuccessful.'')	            ║")
             print(
                 "║                                                     │                                                     ║")
             print(
